@@ -150,8 +150,29 @@ def translate_to_pirate_talk(phrase):
         >>> translate_to_pirate_talk("my student is not a man!")
         'me swabbie be not a man!'
     """
+    eng_to_priate = {
+        'sir': 'matey',
+        'hotel': 'fleabag inn',
+        'student': 'swabbie',
+        'man': 'matey',
+        'professor': 'foul blaggart',
+        'restaurant': 'galley',
+        'your': 'yer',
+        'excuse': 'arr',
+        'students': 'swabbies',
+        'are': 'be',
+        'restroom': 'head',
+        'my': 'me',
+        'is': 'be'
+    }
 
-    return ""
+    words_in_phrase = phrase.split()
+
+    for i in range(len(words_in_phrase)):
+        if words_in_phrase[i] in eng_to_priate: #update in place
+            words_in_phrase[i] = eng_to_priate[words_in_phrase[i]]
+
+    return ' '.join(words_in_phrase)
 
 
 def kids_game(names):
@@ -200,7 +221,23 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    # Create dictionary
+    dict = {}
+    for name in names[1:]:
+        dict.setdefault(name[0], []).append(name) # Key is first letter, value is list of names starting with that letter
+
+    name_final = [first_name]
+
+    while last_letter in dict and dict[last_letter] != []:
+
+
+        if dict[current_name[-1]] != []:
+            dict[current_name[-1]].pop() # remove the name from the value in the dict
+
+
+
+
+    return name_final
 
 #####################################################################
 # You can ignore everything below this.
