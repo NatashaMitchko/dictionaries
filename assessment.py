@@ -174,7 +174,7 @@ def translate_to_pirate_talk(phrase):
 
     return ' '.join(words_in_phrase)
 
-
+# I think this works but it doesn't pass the doctests
 def kids_game(names):
     """Play a kids' word chain game.
 
@@ -226,16 +226,19 @@ def kids_game(names):
     for name in names[1:]:
         dict.setdefault(name[0], []).append(name) # Key is first letter, value is list of names starting with that letter
 
-    name_final = [first_name]
+    name_final = [names[0]]
+    last_name_in_list = name_final[-1]
+    last_letter = last_name_in_list[-1]
 
     while last_letter in dict and dict[last_letter] != []:
+        if dict[last_letter[-1]] != []:
+            next_name = dict[last_letter[-1]]
+            name_final.append(next_name[-1])
 
+            dict[last_letter[-1]].pop() # remove the name from the value in the dict
 
-        if dict[current_name[-1]] != []:
-            dict[current_name[-1]].pop() # remove the name from the value in the dict
-
-
-
+        last_name_in_list = name_final[-1]
+        last_letter = last_name_in_list[-1]
 
     return name_final
 
